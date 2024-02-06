@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.13)
+project(mymuduo)
+
+set(CMAKE_CXX_STANDARD 14)
+
+ADD_SUBDIRECTORY(reactor/)
+ADD_SUBDIRECTORY(reactor/test)
+ADD_SUBDIRECTORY(base/tests)
+ADD_SUBDIRECTORY(base)
+ADD_SUBDIRECTORY(net)
+ADD_SUBDIRECTORY(net/test)
+ADD_SUBDIRECTORY(http)
+ADD_SUBDIRECTORY(http/test)
+ADD_SUBDIRECTORY(reactor/test/test_timer)
+add_executable(mymuduo main.cpp)
