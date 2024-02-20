@@ -1,106 +1,59 @@
-//
-// Created by jxq on 19-6-12.
-//
-
-#ifndef MYMUDUO_EVENTLOOP_H
-#define MYMUDUO_EVENTLOOP_H
-
-
-#include <boost/noncopyable.hpp>
-#include <boost/scoped_ptr.hpp>
-#include "../base/Thread.h"
-#include "TimerId.h"
+#pragma once
+#include <functional>
 #include <vector>
-
-
-namespace muduo
-{
-
-class Poller;
-class EPoller;
+#include <atomic>
+#include "noncopyable.h"
+#include "Timestamp.h"
+#include <memory>
+#include <mutex>
+#include "CurrentThread.h"
 class Channel;
-class TimerQueue;
+class Poller;
+namespace wnet::net {
+//事件循环类， 主要包含了两大模块，channel 和 poller
+    class EventLoop : public noncopyable {
+    public:
+        using Functor = std::function<void()>;
 
-class EventLoop : boost::noncopyable{   // 允许程序轻松实现一个不可复制的类。
-public:
-    typedef boost::function<void()> Functor;
-    EventLoop();    // 构造函数
-    ~EventLoop();   // 析构函数
+        EventLoop();
 
-    void loop();    // 成员函数
+        ~EventLoop();
 
-    // 断言是否在当前线程
-    void assertInLoopThread()
-    {
-        if (!isInLoopThread())
-        {
-            abortNotInLoopThread();
-        }
-    }
+        void loop(); //开启事件循环
+        void quit(); //关闭事件循环
+        TimeStamp poolReturnTime() const { return pollReturnTime_; }
 
-    bool isInLoopThread() const
-    {
-        return threadId_ == CurrentThread::tid();
-    }
+        void runInLoop(Functor cb); //mainReactor用于唤醒Subreactor的
+        void queueInLoop(Functor cb); //
+        void wakeup();
 
-    static EventLoop* getEventLoopOfCurrentThread();
+        void updateChannel(Channel *channel);
 
-    void quit();
+        void removeChannel(Channel *channel);
 
-    void cancel(TimerId timerId);
+        bool hasChannel(Channel *channel);
 
-    // internal use only
-    void wakeup();
-    void updateChannel(Channel* channel);
-    void removeChannel(Channel* channel);
+        //判断当前的eventloop对象是否在自己的线程里面
+        bool isInLoopThread() const { return threadId_ == CurrentThread::tid(); }
 
-    // timers
+    private:
+        void handleRead(); //处理唤醒相关的逻辑。
+        void doPendingFunctors();//执行回调的
 
-    ///
-    /// Runs callback at 'time'.
-    ///
-    TimerId runAt(const Timestamp& time, const TimerCallback& cb);
-    ///
-    /// Runs callback after @c delay seconds.
-    ///
-    TimerId runAfter(double delay, const TimerCallback& cb);
-    ///
-    /// Runs callback every @c interval seconds.
-    ///
-    TimerId runEvery(double interval, const TimerCallback& cb);
-
-    void runInLoop(const Functor& cb);
-
-    void queueInLoop(const Functor& cb);
-private:
-
-    void abortNotInLoopThread();
-    void handleRead();  // waked up
-    void doPendingFunctors();
-
-    typedef std::vector<Channel*> ChannelList;
-
-    bool looping_;                  // atomic
-    bool quit_;                     // atomic
-    bool callingPendingFunctors_;   // atomic
-    const pid_t threadId_;          // 记录本对象所属的线程
-    Timestamp pollReturnTime_;
-    boost::scoped_ptr<EPoller> poller_;  // 栈上管理对象，自动销毁，不能拷贝, 间接持有
-    //boost::scoped_ptr<EPoller> poller_;
-    boost::scoped_ptr<TimerQueue> timerQueue_;
-    int wakeupFd_;
-    // unlike in TimerQueue, which is an internal class,
-    // we don't expose Channel to client.
-    boost::scoped_ptr<Channel> wakeupChannel_;
-    ChannelList activeChannels_;
-    MutexLock mutex_;
-    // pendingFunctors_存储需要在I/O线程中执行的任务集
-    std::vector<Functor> pendingFunctors_;  // @GuardedBy mutex_
-
-
-};
+        using ChannelList = std::vector<Channel *>;
+        std::atomic<bool> looping_; //标志进入loop循环
+        std::atomic<bool> quit_; //标志退出loop循环 这个和looping_ 其实本质上有重叠
+        std::atomic<bool> callingPendingFunctors_; //标识当前loop是否有需要执行回调操作
+        const pid_t threadId_; //当前loop所在的线程的id
+        TimeStamp pollReturnTime_; //poller返回发生事件的channels的时间点
+        std::unique_ptr<Poller> poller_; //一个EventLoop需要一个poller，这个poller其实就是操控这个EventLoop的对象。
+        //统一事件源
+        int wakeupFd_; //主要作用，当mainLoop获取一个新用户的channel通过轮询算法选择一个subloop(subreactor)来处理channel。
+        std::unique_ptr<Channel> wakeupChannel_;
+        ChannelList activeChannels_;
+        Channel *currentActiveChannel_;
+        std::vector<Functor> pendingFunctors_; //存储loop需要执行的所有回调操作。
+        std::mutex mutex_; //保护上面vector容器的线程安全操作。
+    };
 
 }
-
-
-#endif //MYMUDUO_EVENTLOOP_H

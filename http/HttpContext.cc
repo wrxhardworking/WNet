@@ -11,8 +11,8 @@
 #include "HttpContext.h"
 #include <algorithm>
 
-using namespace muduo;
-using namespace muduo::net;
+using namespace wnet;
+using namespace wnet::net;
 
 // 解析请求行
 bool HttpContext::processRequestLine(const char* begin, const char* end)
@@ -64,7 +64,7 @@ bool HttpContext::processRequestLine(const char* begin, const char* end)
 
 // 解析请求
 // return false if any error
-bool HttpContext::parseRequest(muduo::Buffer* buf, Timestamp receiveTime)
+bool HttpContext::parseRequest(wnet::Buffer* buf, Timestamp receiveTime)
 {
   bool ok = true;
   bool hasMore = true;

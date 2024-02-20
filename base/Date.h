@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-7.
-//
-
 #ifndef MYMUDUO_DATA_H
 #define MYMUDUO_DATA_H
 
@@ -10,9 +6,9 @@
 
 struct tm;
 
-namespace muduo
+namespace wnet
 {
-    class Date : public muduo::copyable
+    class Date : public wnet::copyable
     {
     public:
         struct YearMonthDay {

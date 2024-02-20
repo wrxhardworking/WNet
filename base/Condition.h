@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-6-21.
-//
-
 #ifndef MYMUDUO_CONDITION_H
 #define MYMUDUO_CONDITION_H
 
 
 #include "Mutex.h"
 
-namespace muduo
+namespace wnet
 {
     class Condition : noncopyable {
     public:

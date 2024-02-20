@@ -1,61 +1,37 @@
-//
-// Created by jxq on 19-8-22.
-//
-
-#ifndef MYMUDUO_POLLER_H
-#define MYMUDUO_POLLER_H
-
-#include "EventLoop.h"
-#include "../base/Timestamp.h"
-#include <boost/core/noncopyable.hpp>
+#pragma once
+#include "noncopyable.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
+#include "Channel.h"
+namespace wnet::net {
+    class Channel;
 
-struct pollfd;
+    class EventLoop;
 
-namespace muduo
-{
+    class Poller : public noncopyable {
+    public:
+        using ChannelList = std::vector<Channel *>;
 
-class Channel;
+        Poller(EventLoop *loop);
 
-///
-/// IO Multiplexing with poll(2).
-///
-/// This class doesn't own the Channel objects.
-class Poller : boost::noncopyable
-{
-public:
-    typedef vector<Channel*> ChannelList;
+        virtual ~Poller();
 
-    Poller(EventLoop* loop);
-    ~Poller();
+        //给所有io复用保留统一的接口，当前激活的channels，需要poller去循查的channel(fd)
+        virtual TimeStamp poll(int timeoutMs, ChannelList *ativateChannels) = 0;
 
-    /// Polls the I/O events;
-    /// Must be called in the loop thread
-    Timestamp poll(int timeoutMs, ChannelList* activeChannels);
+        virtual void updateChannel(Channel *channel) = 0;
 
-    /// Changes the interested I/O events
-    /// Must be called in the loop thread
-    void updateChannel(Channel* channel);
-    void removeChannel(Channel* channel);
+        virtual void removeChannel(Channel *channel) = 0;
 
-    void assertInLoopThread()
-    {
-        ownerLoop_->assertInLoopThread();
-    }
+        bool hasChannel(Channel *channel) const; //判断一个poller里面有没有这个channel
 
-private:
-    void fillActiveChannel(int numEvents,
-            ChannelList* activeChannels) const;
+        //EventLoop可以通过该接口获取默认的IO复用的具体实现
+        static Poller *newDefaultPoller(EventLoop *loop);
 
-    typedef std::vector<struct pollfd> PollFdList;
-    typedef std::map<int, Channel*> ChannelMap;
-
-    EventLoop* ownerLoop_;
-    PollFdList pollfds_;
-    ChannelMap channels_;   // fd 到 Channel 的映射
-};
-
+    protected:
+        using ChannelMap = std::unordered_map<int, Channel *>;
+        ChannelMap channels_;
+    private:
+        EventLoop *ownerLoop_;
+    };
 }
-
-#endif //MYMUDUO_POLLER_H

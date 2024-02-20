@@ -1,11 +1,7 @@
-//
-// Created by jxq on 19-7-7.
-//
-
 #include "Date.h"
 #include <stdio.h>
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -40,10 +36,10 @@ namespace muduo
     }   // namespace detail
 
     const int Date::kJulianDayOf1970_01_01 = detail::getJulianDayNumber(1970, 1, 1);
-}   // namespace muduo
+}   // namespace wnet
 
-using namespace muduo;
-using namespace muduo::detail;
+using namespace wnet;
+using namespace wnet::detail;
 
 Date::Date(int y, int m, int d)
     : julianDayNumber_(getJulianDayNumber(y, m, d))

@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-6-21.
-//
-
 #ifndef MYMUDUO_COUNTDOWNLATCH_H
 #define MYMUDUO_COUNTDOWNLATCH_H
 
 #include "Condition.h"
 #include "Mutex.h"
 
-namespace muduo
+namespace wnet
 {
     // 倒计时计数器
     class CountDownLatch : noncopyable

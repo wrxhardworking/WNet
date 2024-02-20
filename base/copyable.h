@@ -1,11 +1,7 @@
-//
-// Created by jxq on 19-6-15.
-//
-
 #ifndef MYMUDUO_COPYABLE_H
 #define MYMUDUO_COPYABLE_H
 
-namespace muduo
+namespace wnet
 {
     class copyable
     {

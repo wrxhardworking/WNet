@@ -7,8 +7,8 @@
 #include <iostream>
 #include <map>
 
-using namespace muduo;
-using namespace muduo::net;
+using namespace wnet;
+using namespace wnet::net;
 
 extern char favicon[555];
 bool benchmark = false;

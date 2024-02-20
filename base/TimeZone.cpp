@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-7.
-//
-
 #include "TimeZone.h"
 #include "noncopyable.h"
 #include "Date.h"
@@ -17,7 +13,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -91,9 +87,9 @@ namespace muduo
     }   // namespace detail
 
     const int kSecondsPerDay = 24 * 60 * 60;
-}   // namespace muduo
+}   // namespace wnet
 
-using namespace muduo;
+using namespace wnet;
 using namespace std;
 
 struct TimeZone::Data
@@ -104,7 +100,7 @@ struct TimeZone::Data
     string abbreviation;    // 缩写
 };
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -275,7 +271,7 @@ namespace muduo
         }
 
     }  // namespace detail
-}  // namespace muduo
+}  // namespace wnet
 
 
 TimeZone::TimeZone(const char* zonefile)

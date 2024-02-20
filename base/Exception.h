@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-6-20.
-//
-
 #ifndef MYMUDUO_EXCEPTION_H
 #define MYMUDUO_EXCEPTION_H
 
 #include "Types.h"
 #include <exception>
 
-namespace muduo
+namespace wnet
 {
     class Exception : public std::exception
     {

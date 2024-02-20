@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-11-16.
-//
-
 #include "AsyncLogging.h"
 #include "LogFile.h"
 #include "Timestamp.h"
 
 #include <stdio.h>
 
-using namespace muduo;
+using namespace wnet;
 
 AsyncLogging::AsyncLogging(const string &basename,
                            off_t rollSize,
@@ -40,7 +36,7 @@ Description :
 *********************************************************************/
 void AsyncLogging::append(const char *logline, int len)
 {
-    muduo::MutexLockGuard lock(mutex_);
+    wnet::MutexLockGuard lock(mutex_);
     // 如果当前buffer的长度大于要添加的日志记录的长度，即当前buffer还有空间，就添加到当前日志。
     if (currentBuffer_->avail() > len)
     {
@@ -94,7 +90,7 @@ void AsyncLogging::threadFunc()
         assert(buffersToWrite.empty());
 
         {
-            muduo::MutexLockGuard lock(mutex_);
+            wnet::MutexLockGuard lock(mutex_);
             // 如果buffers_为空，那么表示没有数据需要写入文件，那么就等待指定的时间。
             if (buffers_.empty())   // unusual usage!
             {

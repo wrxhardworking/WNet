@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-7.
-//
-
 #ifndef MYMUDUO_TIMEZONE_H
 #define MYMUDUO_TIMEZONE_H
 
@@ -9,10 +5,10 @@
 #include <memory>
 #include <time.h>
 
-namespace muduo
+namespace wnet
 {
     // TimeZone for 1970~2030
-    class TimeZone : public muduo::copyable
+    class TimeZone : public wnet::copyable
     {
 
     public:

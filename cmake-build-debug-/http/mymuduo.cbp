@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="mymuduo"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\http\;CMake Files\http\test\;CMake Files\reactor\;CMake Files\base\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/libhttp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 http"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http/fast">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/libhttp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 http/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HttpServer_test">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/HttpServer_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 HttpServer_test"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HttpServer_test/fast">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/HttpServer_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 HttpServer_test/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LoggingTest">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/LoggingTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 LoggingTest"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LoggingTest/fast">
+				<Option output="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/LoggingTest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 LoggingTest/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-/http/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpContext.cc">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpContext.h">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpRequest.h">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpResponse.cc">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpResponse.h">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpServer.cc">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/HttpServer.h">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/test/HttpServer_test.cc">
+			<Option target="HttpServer_test"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/test/LoggingTest.cpp">
+			<Option target="LoggingTest"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\http\"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/http/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\http\test\"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/reactor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\reactor\"/>
+		</Unit>
+		<Unit filename="/CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\base\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

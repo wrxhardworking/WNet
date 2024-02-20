@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #include "Logging.h"
 #include "CurrentThread.h"
 #include "Timestamp.h"
@@ -13,7 +9,7 @@
 
 #include <sstream>
 
-namespace muduo
+namespace wnet
 {
     __thread char t_errnobuf[512];
     __thread char t_time[64];
@@ -97,12 +93,12 @@ namespace muduo
     Logger::OutputFunc g_output = defaultOutput;    // 默认输出方法
     Logger::FlushFunc g_flush = defaultFlush;   // 默认刷新方法
     TimeZone g_logTimeZone;
-}   // namespace muduo
+}   // namespace wnet
 
-using namespace muduo;
+using namespace wnet;
 
                                     // 错误码 没有传0
-Logger::Impl::Impl(LogLevel level, int savedErrno, const muduo::Logger::SourceFile &file, int line)
+Logger::Impl::Impl(LogLevel level, int savedErrno, const wnet::Logger::SourceFile &file, int line)
     : time_(Timestamp::now()),  // 当前时间
       stream_(),                // 初始化logger[Impl]的四个成员
       level_(level),            // 日志级别

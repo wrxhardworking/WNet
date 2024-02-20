@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #ifndef MYMUDUO_LOGFILE_H
 #define MYMUDUO_LOGFILE_H
 
@@ -10,7 +6,7 @@
 
 #include <memory>
 
-namespace muduo
+namespace wnet
 {
     namespace FileUtil
     {
@@ -55,7 +51,7 @@ namespace muduo
 
         const static int kRollPerSeconds_ = 60 * 60 * 24;
     };
-}   // namespace muduo
+}   // namespace wnet
 
 
 #endif //MYMUDUO_LOGFILE_H

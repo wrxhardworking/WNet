@@ -18,14 +18,14 @@
 
 // HttpContext类对客户端发来的请求进行接收和解析，最终将解析出来的消息保存到了HttpRequest对象中
 
-namespace muduo
+namespace wnet
 {
 namespace net
 {
 
 class Buffer;
 
-class HttpContext : public muduo::copyable
+class HttpContext : public wnet::copyable
 {
  public:
   // 解析请求的状态
@@ -45,7 +45,7 @@ class HttpContext : public muduo::copyable
   // default copy-ctor, dtor and assignment are fine
 
   // return false if any error
-  bool parseRequest(muduo::Buffer* buf, Timestamp receiveTime);
+  bool parseRequest(wnet::Buffer* buf, Timestamp receiveTime);
 
   bool gotAll() const
   { return state_ == kGotAll; }
@@ -74,6 +74,6 @@ class HttpContext : public muduo::copyable
 };
 
 }  // namespace net
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_NET_HTTP_HTTPCONTEXT_H

@@ -1,6 +1,4 @@
-//
-// Created by jxq on 19-6-24.
-//
+
 
 #ifndef MYMUDUO_BOUNDEDBLOCKINGQUEUE_H
 #define MYMUDUO_BOUNDEDBLOCKINGQUEUE_H
@@ -8,10 +6,10 @@
 #include "Condition.h"
 #include "Mutex.h"
 
-#include <boost/circular_buffer.hpp>
+//#include <boost/circular_buffer.hpp>
 #include <assert.h>
 
-namespace muduo
+namespace wnet
 {
     template <typename T>
     class BoundedBlockingQueue : noncopyable
@@ -91,8 +89,8 @@ namespace muduo
         mutable MutexLock mutex_;
         Condition notEmpty_ GUARDED_BY(mutex_);
         Condition notFull_ GUARDED_BY(mutex_);
-        boost::circular_buffer<T> queue_ GUARDED_BY(mutex_);
+//        boost::circular_buffer<T> queue_ GUARDED_BY(mutex_);
     };
-}   // namespace muduo
+}   // namespace wnet
 
 #endif //MYMUDUO_BOUNDEDBLOCKINGQUEUE_H

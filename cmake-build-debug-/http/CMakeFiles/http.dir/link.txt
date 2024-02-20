@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhttp.a  CMakeFiles/http.dir/HttpContext.cc.o CMakeFiles/http.dir/HttpResponse.cc.o CMakeFiles/http.dir/HttpServer.cc.o
+/usr/bin/ranlib libhttp.a

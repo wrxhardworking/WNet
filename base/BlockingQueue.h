@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-6-24.
-//
-
 #ifndef MYMUDUO_BLOCKINGQUEUE_H
 #define MYMUDUO_BLOCKINGQUEUE_H
 
@@ -11,7 +7,7 @@
 #include <deque>
 #include <assert.h>
 
-namespace muduo {
+namespace wnet {
     template<typename T>
     class BlockingQueue : noncopyable {
     public:
@@ -56,6 +52,6 @@ namespace muduo {
         Condition notEempty_ GUARDED_BY(mutex_);
         std::deque<T> queue_ GUARDED_BY(mutex_);
     };
-}   // namespace muduo;
+}   // namespace wnet;
 
 #endif //MYMUDUO_BLOCKINGQUEUE_H

@@ -1,8 +1,3 @@
-// Use of this source code is governed by a BSD-style license
-// that can be found in the License file.
-//
-// Author: Shuo Chen (chenshuo at chenshuo dot com)
-
 #include "FileUtil.h"
 #include "Logging.h"
 
@@ -13,7 +8,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-using namespace muduo;
+using namespace wnet;
 
 // 非线程安全
 FileUtil::AppendFile::AppendFile(StringArg filename)

@@ -19,12 +19,12 @@
 #include <assert.h>
 #include <stdio.h>
 
-namespace muduo
+namespace wnet
 {
 namespace net
 {
 
-class HttpRequest : public muduo::copyable
+class HttpRequest : public wnet::copyable
 {
  public:
     // 请求方法
@@ -186,6 +186,6 @@ class HttpRequest : public muduo::copyable
 };
 
 }  // namespace net
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_NET_HTTP_HTTPREQUEST_H

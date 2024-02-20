@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-6-20.
-//
-
 #ifndef MYMUDUO_ATOMIC_H
 #define MYMUDUO_ATOMIC_H
 
@@ -9,7 +5,7 @@
 
 #include <stdint.h>
 
-namespace muduo
+namespace wnet
 {
 
 namespace detail
@@ -82,7 +78,7 @@ namespace detail
 
 typedef detail::AtomicIntegerT< int32_t > AtomicInt32;
 typedef detail::AtomicIntegerT< int64_t > AtomicInt64;
-}   // namespace muduo
+}   // namespace wnet
 
 #endif //MYMUDUO_ATOMIC_H
 

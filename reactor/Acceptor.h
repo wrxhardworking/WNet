@@ -1,57 +1,39 @@
-//
-// Created by jxq on 19-8-28.
-//
-
-#ifndef MYMUDUO_ACCEPTOR_H
-#define MYMUDUO_ACCEPTOR_H
-
-
-#include <boost/core/noncopyable.hpp>
-#include "Socket.h"
+#pragma once
+#include "noncopyable.h"
 #include "Channel.h"
-#include "EventLoop.h"
-#include "InetAddress.h"
+#include "Socket.h"
+#include <functional>
 
-namespace muduo
-{
 
 class EventLoop;
 class InetAddress;
 
-///
-/// Acceptor of incoming TCP connections.
-///
-class Acceptor : boost::noncopyable{
-public:
-    typedef boost::function<void(int sockfd,
-            const InetAddress&)> NewConnectionCallback;
+namespace wnet::net {
 
-    Acceptor(EventLoop* loop, const InetAddress& listenAddr, bool reuseport);   // socket、bind
-    Acceptor(EventLoop* loop, const InetAddress& listenAddr);
+    class Acceptor : public noncopyable {
+    public:
+        using NewConnectionCallback = std::function<void(int sockfd, const InetAddress &)>;
 
-    void setNewConnectionCallback(const NewConnectionCallback& cb)
-    {
-        newConnectionCallback_ = cb;
-    }
+        Acceptor(EventLoop *loop, const InetAddress &listenAddr, bool reuseport);
 
-    bool listenning() const
-    {
-        return listenning_;
-    }
+        ~Acceptor();
 
-    void listen();  // 执行创建TCP服务端的传统步骤, listen
-private:
-    void handleRead();
+        void setNewConnectionCallback(const NewConnectionCallback &cb) {
+            //设置连接事件发生的回调函数。
+            newConnectionCallback_ = cb; //当有连接事件发生的时候调用newConnectionCallback_
+        }
 
-    EventLoop* loop_;
-    Socket acceptSocket_;   // RAII handle, 监听socket
-    Channel acceptChannel_;
-    NewConnectionCallback newConnectionCallback_;
-    bool listenning_;
-    int idleFd_;
-};
+        bool listenning() const { return listenning_; }
 
+        void listen();
+
+    private:
+        void handleRead();
+
+        EventLoop *loop_;
+        Socket acceptSocket_;
+        Channel acceptChannel_; //
+        NewConnectionCallback newConnectionCallback_;
+        bool listenning_;
+    };
 }
-
-
-#endif //MYMUDUO_ACCEPTOR_H

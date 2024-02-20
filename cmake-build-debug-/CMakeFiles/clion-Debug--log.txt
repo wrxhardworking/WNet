@@ -1,0 +1,16 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /CppWorksapceWsl/tmp/tmp.xbWUgEFN3x -B /CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/cmake-build-debug-
+-- Configuring done
+CMake Error at reactor/CMakeLists.txt:7 (add_library):
+  Cannot find source file:
+
+    /CppWorksapceWsl/tmp/tmp.xbWUgEFN3x/reactor/*.cc
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at reactor/CMakeLists.txt:7 (add_library):
+  No SOURCES given to target: net
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

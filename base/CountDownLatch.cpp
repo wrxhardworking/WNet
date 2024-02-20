@@ -1,10 +1,6 @@
-//
-// Created by jxq on 19-6-21.
-//
-
 #include "CountDownLatch.h"
 
-using namespace muduo;
+using namespace wnet;
 
 // 倒计时计数器
 CountDownLatch::CountDownLatch(int count)

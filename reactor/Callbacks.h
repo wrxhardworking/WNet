@@ -1,34 +1,18 @@
-//
-// Created by jxq on 19-8-26.
-//
-
-#ifndef MYMUDUO_CALLBACKS_H
-#define MYMUDUO_CALLBACKS_H
-
-#include <boost/function.hpp>
-#include <boost/shared_ptr.hpp>
-
-#include "../base/Timestamp.h"
-#include "Buffer.h"
-
-namespace muduo
-{
-    typedef boost::function<void()> TimerCallback;
-
-    // All client visible callbacks go here.
-    class TcpConnection;
-    typedef boost::shared_ptr<TcpConnection> TcpConnectionPtr;
-
-    typedef boost::function<void()> TimerCallback;
-    typedef boost::function<void (const TcpConnectionPtr&)> ConnectionCallback;
-    typedef boost::function<void (const TcpConnectionPtr&,
-                                 // const char* data,
-                                 // ssize_t len)> MessageCallback;
-                                  Buffer* buf,
-                                  Timestamp)> MessageCallback;
-    typedef boost::function<void (const TcpConnectionPtr&)> WriteCompleteCallback;
-    typedef std::function<void (const TcpConnectionPtr&, size_t)> HighWaterMarkCallback;
-    typedef boost::function<void (const TcpConnectionPtr&)> CloseCallback;
+#pragma once
+#include <memory>
+#include <functional>
+class Buffer;
+class TcpConnection;
+class TimeStamp;
+/***
+这里的编程思想还有待摸清，首先我是先决定了TcpConnection应该用智能指针管理，毕竟这种对象
+创建容易泄露也容易，而且也不是那种创建删除很频繁的对象。而TcpConnection内部
+ */
+namespace wnet::net {
+    using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
+    using ConnectionCallback = std::function<void(const TcpConnectionPtr &)>;
+    using CloseCallback = std::function<void(const TcpConnectionPtr &)>;
+    using WriteCompleteCallback = std::function<void(const TcpConnectionPtr &)>;
+    using MessageCallback = std::function<void(const TcpConnectionPtr &, Buffer *, TimeStamp)>;
+    using HighWaterMarkCallback = std::function<void(const TcpConnectionPtr &, size_t)>;
 }
-
-#endif //MYMUDUO_CALLBACKS_H

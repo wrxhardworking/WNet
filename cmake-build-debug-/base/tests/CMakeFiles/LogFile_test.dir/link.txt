@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/LogFile_test.dir/LogFile_test.cpp.o  -o LogFile_test  ../libbase.a -lpthread 

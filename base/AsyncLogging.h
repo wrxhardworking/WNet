@@ -15,7 +15,7 @@
 #include <atomic>
 #include <vector>
 
-namespace muduo
+namespace wnet
 {
 
     class AsyncLogging : noncopyable
@@ -57,7 +57,7 @@ namespace muduo
 
         void threadFunc();
 
-        typedef muduo::detail::FixedBuffer<muduo::detail::kLargeBuffer> Buffer;
+        typedef wnet::detail::FixedBuffer<wnet::detail::kLargeBuffer> Buffer;
         // 用unique_ptr管理buffer，持有对对象的独有权，不能进行复制操作只能进行移动操作（效率更高）
         typedef std::vector<std::unique_ptr<Buffer>> BufferVector;
         typedef BufferVector::value_type BufferPtr; // 指向buffer的指针
@@ -66,15 +66,15 @@ namespace muduo
         std::atomic<bool> running_; // 是否正在运行
         const string basename_; // 日志名字
         const off_t rollSize_; // 预留的日志大小
-        muduo::Thread thread_; // 执行该异步日志记录器的线程
-        muduo::CountDownLatch latch_; // 倒计时计数器初始化为1，用于指示什么时候日志记录器才能开始正常工作
-        muduo::MutexLock mutex_;
-        muduo::Condition cond_ GUARDED_BY(mutex_);
+        wnet::Thread thread_; // 执行该异步日志记录器的线程
+        wnet::CountDownLatch latch_; // 倒计时计数器初始化为1，用于指示什么时候日志记录器才能开始正常工作
+        wnet::MutexLock mutex_;
+        wnet::Condition cond_ GUARDED_BY(mutex_);
         BufferPtr currentBuffer_ GUARDED_BY(mutex_); // 当前的缓冲区
         BufferPtr nextBuffer_ GUARDED_BY(mutex_); // 下一个缓冲区
         BufferVector buffers_ GUARDED_BY(mutex_); // 缓冲区队列
     };
 
-}  // namespace muduo
+}  // namespace wnet
 
 #endif //MYMUDUO_ASYNCLOGGING_H

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/muduo.dir/main.cpp.o  -o muduo  ../libreactor.a ../../base/libbase.a -lpthread 

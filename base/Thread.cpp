@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-6-21.
-//
-
 #include "Thread.h"
 #include "CurrentThread.h"
 #include "Exception.h"
@@ -21,7 +17,7 @@
 
 using namespace std;
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -33,8 +29,8 @@ namespace muduo
 
         void afterFork()
         {
-            muduo::CurrentThread::t_cachedTid = 0;
-            muduo::CurrentThread::t_threadName = "main";
+            wnet::CurrentThread::t_cachedTid = 0;
+            wnet::CurrentThread::t_threadName = "main";
             CurrentThread::tid();
         }
 
@@ -43,7 +39,7 @@ namespace muduo
         public:
             ThreadNameInitializer()
             {
-                muduo::CurrentThread::t_threadName = "main";
+                wnet::CurrentThread::t_threadName = "main";
                 CurrentThread::tid();
                 pthread_atfork(NULL, NULL, &afterFork);
             }
@@ -53,7 +49,7 @@ namespace muduo
 
         struct ThreadData
         {
-            typedef muduo::Thread::ThreadFunc ThreadFunc;
+            typedef wnet::Thread::ThreadFunc ThreadFunc;
             ThreadFunc func_;
             string name_;
             pid_t* tid_;
@@ -73,21 +69,21 @@ namespace muduo
 
             void runInThread()
             {
-                *tid_ = muduo::CurrentThread::tid();
+                *tid_ = wnet::CurrentThread::tid();
                 tid_ = NULL;
                 latch_->countDown();    // 倒计时
                 latch_ = NULL;
 
-                muduo::CurrentThread::t_threadName = name_.empty() ? "muduoThread" : name_.c_str();
-                ::prctl(PR_SET_NAME, muduo::CurrentThread::t_threadName);   // 设置进程名
+                wnet::CurrentThread::t_threadName = name_.empty() ? "muduoThread" : name_.c_str();
+                ::prctl(PR_SET_NAME, wnet::CurrentThread::t_threadName);   // 设置进程名
                 try
                 {
                     func_();
-                    muduo::CurrentThread::t_threadName = "finished";
+                    wnet::CurrentThread::t_threadName = "finished";
                 }
                 catch (const Exception& ex)
                 {
-                    muduo::CurrentThread::t_threadName = "crashed";
+                    wnet::CurrentThread::t_threadName = "crashed";
                     fprintf(stderr, "exception caught in Thread %s\n", name_.c_str());
                     fprintf(stderr, "reason: %s\n", ex.what());
                     fprintf(stderr, "stack trace: %s\n", ex.stackTrace());
@@ -95,14 +91,14 @@ namespace muduo
                 }
                 catch (const std::exception& ex)
                 {
-                    muduo::CurrentThread::t_threadName = "crashed";
+                    wnet::CurrentThread::t_threadName = "crashed";
                     fprintf(stderr, "exception caught in Thread %s\n", name_.c_str());
                     fprintf(stderr, "reason: %s\n", ex.what());
                     abort();
                 }
                 catch (...) // 表示捕获所有类型的异常。
                 {
-                    muduo::CurrentThread::t_threadName = "crashed";
+                    wnet::CurrentThread::t_threadName = "crashed";
                     fprintf(stderr, "unknown exception caught in Thread %s\n", name_.c_str());
                     throw;
                 }
@@ -204,7 +200,7 @@ namespace muduo
         return pthread_join(pthreadId_, NULL);
     }
 
-}   // namespace muduo
+}   // namespace wnet
 
 
 

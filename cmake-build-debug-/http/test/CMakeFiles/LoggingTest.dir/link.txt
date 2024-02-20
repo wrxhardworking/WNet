@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/LoggingTest.dir/LoggingTest.cpp.o  -o LoggingTest  ../../base/libbase.a -lreactor ../libhttp.a -lpthread -lreactor 

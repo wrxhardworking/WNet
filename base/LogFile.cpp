@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #include "LogFile.h"
 #include "FileUtil.h"
 #include "ProcessInfo.h"
@@ -10,7 +6,7 @@
 #include <stdio.h>
 #include <time.h>
 
-using namespace muduo;
+using namespace wnet;
 
 LogFile::LogFile(const std::string &basename, off_t rollSize, bool threadSafe, int flushInterval, int checkEveryN)
     : basename_(basename),

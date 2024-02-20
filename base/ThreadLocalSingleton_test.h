@@ -1,6 +1,4 @@
-//
-// Created by jxq on 19-7-2.
-//
+
 
 #ifndef MYMUDUO_THREADLOCALSINGLETON_H
 #define MYMUDUO_THREADLOCALSINGLETON_H
@@ -10,7 +8,7 @@
 #include <assert.h>
 #include <pthread.h>
 
-namespace muduo
+namespace wnet
 {
     template<typename T>
     class ThreadLocalSingleton : noncopyable

@@ -1,70 +1,31 @@
-//
-// Created by jxq on 19-8-28.
-//
+#pragma once
+#include "noncopyable.h"
+namespace wnet::net {
+    class InetAddress;
 
-#ifndef MYMUDUO_SOCKET_H
-#define MYMUDUO_SOCKET_H
+    class Socket : public noncopyable {
+    public:
+        explicit Socket(int sockfd) : sockfd_(sockfd) {}
 
-#include <boost/core/noncopyable.hpp>
-#include "InetAddress.h"
+        ~Socket();
 
-namespace muduo
-{
+    public:
+        int fd() const { return sockfd_; }
 
-class InetAddress;
-///
-/// Wrapper of socket file descriptor.
-///
-/// It closes the sockfd when desctructs.
-/// It's thread safe, all operations are delagated to OS.
-class Socket : boost::noncopyable {
-public:
-    explicit Socket(int sockfd)
-        : sockfd_(sockfd)
-    {
+        void bindAddress(const InetAddress &localaddr); //调用bind绑定服务器IP端口
+        void listen(); //调用listen监听套接字
+        int accept(InetAddress *peeradd); //调用accept接受新客户连接请求
+        void shutdownWrite();  //调用shutdown关闭服务端写通道
 
-    }
+        /**  下面四个函数都是调用setsockopt来设置一些socket选项  **/
+        void setTcpNoDelay(bool on); //不启用naggle算法，增大对小数据包的支持
+        void setReuseAddr(bool on);
 
-    ~Socket();
+        void setReusePort(bool on);
 
-    int fd() const
-    {
-        return sockfd_;
-    }
+        void setKeepAlive(bool on);
 
-    // abort if address in use
-    void bindAdddr(const InetAddress& localaddr);
-    // abort if address in use
-    void listen();
-
-    /// On success, returns a non-negative integer that is
-    /// a descriptor for the accepted socket, which has been
-    /// set to non-blocking and close-on-exec. *peeraddr is assigned.
-    /// On error, -1 is returned, and *peeraddr is untouched.
-    int accept(InetAddress* peeraddr);
-
-    ///
-    /// Enable/disable SO_REUSEADDR
-    ///
-    void setReuseAddr(bool on);
-
-    void shutdownWrite();
-
-    ///
-    /// Enable/disable TCP_NODELAY (disable/enable Nagle's algorithm).
-    ///
-    void setTcpNoDelay(bool on);
-    ///
-    /// Enable/disable SO_KEEPALIVE
-    ///
-    void setKeepAlive(bool on);
-    void setReusePort(bool on);
-
-private:
-    const int sockfd_;
-};
-
+    private:
+        const int sockfd_; //服务器监听套接字文件描述符
+    };
 }
-
-
-#endif //MYMUDUO_SOCKET_H

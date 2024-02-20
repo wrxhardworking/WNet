@@ -1,32 +1,36 @@
-//
-// Created by jxq on 19-8-27.
-//
+/***
+ EventLoopThread类绑定了一个EventLoop和一个线程
+ */
 
-#ifndef MYMUDUO_EVENTLOOPTHREAD_H
-#define MYMUDUO_EVENTLOOPTHREAD_H
+#pragma once
+#include "noncopyable.h"
+#include <functional>
+#include <string>
+#include <mutex>
+#include "Thread.h"
+#include <condition_variable>
 
+namespace wnet::net {
+class EventLoop;
 
-#include <boost/core/noncopyable.hpp>
-#include "EventLoop.h"
+class EventLoopThread : public noncopyable {
+    public:
+        using ThreadInitCallback = std::function<void(EventLoop *)>;
 
-namespace muduo
-{
-class EventLoopThread : boost::noncopyable{
-public:
-    EventLoopThread();
-    ~EventLoopThread();
-    EventLoop* startLoop();
+        EventLoopThread(const ThreadInitCallback &cb = ThreadInitCallback(), const std::string &name = std::string());
 
-private:
-    void threadFunc();
+        ~EventLoopThread();
 
-    EventLoop* loop_;
-    bool exiting_;
-    Thread thread_;
-    MutexLock mutex_;
-    Condition cond_;
-};
+        EventLoop *startLoop();
+
+    private:
+        void threadFunc();
+
+        EventLoop *loop_;
+        bool exiting_;
+        Thread thread_;
+        std::mutex mutex_;
+        std::condition_variable cond_;
+        ThreadInitCallback callback_;
+    };
 }
-
-
-#endif //MYMUDUO_EVENTLOOPTHREAD_H

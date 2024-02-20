@@ -104,7 +104,7 @@ __END_DECLS
 
 #endif // CHECK_PTHREAD_RETURN_VALUE
 
-namespace muduo
+namespace wnet
 {
 
 // Use as data member of a class, eg.
@@ -223,7 +223,7 @@ class SCOPED_CAPABILITY MutexLockGuard : noncopyable
   MutexLock& mutex_;
 };
 
-}  // namespace muduo
+}  // namespace wnet
 
 // Prevent misuse like:
 // MutexLockGuard(mutex_);

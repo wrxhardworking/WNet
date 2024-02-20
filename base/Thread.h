@@ -1,6 +1,4 @@
-//
-// Created by jxq on 19-6-21.
-//
+
 
 #ifndef MYMUDUO_THREAD_H
 #define MYMUDUO_THREAD_H
@@ -15,7 +13,7 @@
 
 using namespace std;
 
-namespace muduo
+namespace wnet
 {
     class Thread : noncopyable {
     public:

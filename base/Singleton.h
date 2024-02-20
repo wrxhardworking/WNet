@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-1.
-//
-
 #ifndef MYMUDUO_SINGLETON_H
 #define MYMUDUO_SINGLETON_H
 
@@ -12,7 +8,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -85,7 +81,7 @@ namespace muduo
     template <typename T>
     T* Singleton<T>::value_ = NULL; // 静态成员外部会初始化为空
 
-}   // namespace muduo
+}   // namespace wnet
 
 #endif //MYMUDUO_SINGLETON_H
 

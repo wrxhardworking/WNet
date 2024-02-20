@@ -50,10 +50,10 @@ void stressing_multi_threads(int threadNum = 4)
 {
     // threadNum * 100000 lines
     cout << "----------stressing test multi thread-----------" << endl;
-    vector<shared_ptr<muduo::Thread>> vsp;
+    vector<shared_ptr<wnet::Thread>> vsp;
     for (int i = 0; i < threadNum; ++i)
     {
-        shared_ptr<muduo::Thread> tmp(new muduo::Thread(threadFunc, "testFunc " + i));
+        shared_ptr<wnet::Thread> tmp(new wnet::Thread(threadFunc, "testFunc " + i));
         vsp.push_back(tmp);
     }
     for (int i = 0; i < threadNum; ++i)

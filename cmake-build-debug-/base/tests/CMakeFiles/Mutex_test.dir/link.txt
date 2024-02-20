@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Mutex_test.dir/Mutex_test.cpp.o  -o Mutex_test  ../libbase.a -lpthread 

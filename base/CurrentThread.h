@@ -1,13 +1,9 @@
-//
-// Created by jxq on 19-6-20.
-//
-
 #ifndef MYMUDUO_CURRENTTHREAD_H
 #define MYMUDUO_CURRENTTHREAD_H
 
 #include "Types.h"
 
-namespace muduo
+namespace wnet
 {
 
     namespace CurrentThread
@@ -63,7 +59,7 @@ namespace muduo
 
     }   // namespace CurrentThread
 
-}   // namespace muduo
+}   // namespace wnet
 
 
 

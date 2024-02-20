@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/BlockingQueue_bench.dir/BlockingQueue_bench.cpp.o  -o BlockingQueue_bench  ../libbase.a -lpthread 

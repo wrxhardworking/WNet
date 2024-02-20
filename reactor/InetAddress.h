@@ -1,78 +1,30 @@
-//
-// Created by jxq on 19-8-28.
-//
+#pragma once
 
-#ifndef MYMUDUO_INETADDRESS_H
-#define MYMUDUO_INETADDRESS_H
-
-
-#include <cstdint>
+#include <arpa/inet.h> //
+#include <netinet/in.h> //sockaddr_in
 #include <string>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include<netinet/in.h>
-#include "../base/copyable.h"
-#include "SocketsOps.h"
 
-namespace muduo
-{
-///
-/// Wrapper of sockaddr_in.
-///
-/// This is an POD interface class.
-class InetAddress : public muduo::copyable{
-public:
-    /// Constructs an endpoint with given port number.
-    /// Mostly used in TcpServer listening.
-    explicit InetAddress(uint16_t port);
+/***
+ 封装socket地址类型，这里就没有对ipv6进行封装了，只对ipv4进行封装
+ */
+namespace wnet::net {
+    class InetAddress {
+    public:
+        explicit InetAddress(uint16_t port = 0, std::string ip = "127.0.0.1");
 
-    /// Constructs an endpoint with given ip and port.
-    /// @c ip should be "1.2.3.4"
-    InetAddress(const std::string& ip, uint16_t port);
+        explicit InetAddress(const sockaddr_in &addr);
 
-    /// Constructs an endpoint with given struct @c sockaddr_in
-    /// Mostly used when accepting new connections
-    InetAddress(const struct sockaddr_in& addr)
-        : addr_(addr)
-    {
+        std::string toIp() const;
 
-    }
+        std::string toIpPort() const;
 
-    explicit InetAddress(const struct sockaddr_in6& addr)
-            : addr6_(addr)
-    { }
+        uint16_t toPort() const;
 
+        const sockaddr_in *getSockAddr() const;
 
-    std::string toIpPort() const;
+        void setSockAddr(const sockaddr_in &addr) { addr_ = addr; }
 
-    std::string toHostPort() const;
-
-    const struct sockaddr* getSockAddr() const { return sockets::sockaddr_cast(&addr6_); }
-    void setSockAddrInet6(const struct sockaddr_in6& addr6) { addr6_ = addr6; }
-
-    // default copy/assignment are Okay
-    const struct sockaddr_in& getSockAddrInet() const
-    {
-        return addr_;
-    }
-    void setSockAddrInet(const struct sockaddr_in& addr)
-    {
-        addr_ = addr;
-    }
-
-
-
-
-private:
-    //struct sockaddr_in addr_;
-    union
-    {
-        struct sockaddr_in addr_;
-        struct sockaddr_in6 addr6_;
+    private:
+        sockaddr_in addr_;
     };
-};
-
 }
-
-
-#endif //MYMUDUO_INETADDRESS_H

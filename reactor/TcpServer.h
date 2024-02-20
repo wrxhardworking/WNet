@@ -1,98 +1,73 @@
-//
-// Created by jxq on 19-8-29.
-//
-
-#ifndef MYMUDUO_TCPSERVER_H
-#define MYMUDUO_TCPSERVER_H
-
-
-#include <boost/core/noncopyable.hpp>
-#include <map>
-#include "InetAddress.h"
-#include "TcpConnection.h"
+#pragma once
+//TcpServere和使用网络库的程序员直接交互，最好把该包含的头文件都包含了，不然用户还要自己包含，
+//就挺拉稀的
+#include "noncopyable.h"
+#include "EventLoop.h"
 #include "Acceptor.h"
+#include "InetAddress.h"
+#include "noncopyable.h"
+#include <functional>
 #include "EventLoop.h"
 #include "EventLoopThreadPool.h"
-//#include "Callbacks.h"
+#include "Callbacks.h"
+#include <string>
+#include <atomic>
+#include <memory>
+#include <unordered_map>
+namespace wnet::net {
+    class TcpServer : public noncopyable {
+    public:
+        using ThreadInitCallback = std::function<void(EventLoop *)>;
+        enum Option { //预置两个选项，是否对端口进行复用
+            kNoReusePort,
+            kReusePort,
+        };
 
-namespace muduo
-{
+        TcpServer(EventLoop *loop,
+                  const InetAddress &listenAddr,
+                  const std::string &nameArg,
+                  Option option = kNoReusePort); //默认不重用端口
+        ~TcpServer();
 
-class Acceptor;
-class EventLoop;
+        void setThreadInitcallback(const ThreadInitCallback &cb) {
+            threadInitCallback_ = cb;
+        }
 
-class TcpServer : boost::noncopyable {
-public:
-    enum Option
-    {
-        kNoReusePort,
-        kReusePort,
+        void setConnectionCallback(const ConnectionCallback &cb) {
+            connectionCallback_ = cb;
+        }
+
+        void setMessageCallback(const MessageCallback &cb) {
+            messageCallback_ = cb;
+        }
+
+        void setWriteCompleteCallback(const WriteCompleteCallback &cb) {
+            writeCompleteCallback_ = cb;
+        }
+
+        void setThreadNum(int numThreads); //设置底层subloop个数
+        void start(); //开启服务器监听
+    private:
+        void newConnection(int sockfd, const InetAddress &peerAddr);
+
+        void removeConnection(const TcpConnectionPtr &conn);
+
+        void removeConnectionInLoop(const TcpConnectionPtr &conn);
+
+        using ConnectionMap = std::unordered_map<std::string, TcpConnectionPtr>;
+        EventLoop *loop_; //baseLoop，用户自己定义的
+        const std::string ipPort_;
+        const std::string name_;
+        std::unique_ptr<Acceptor> acceptor_; //运行在baseLoop，任务就是监听新连接事件
+        std::shared_ptr<EventLoopThreadPool> threadPool_; //one loop per thread
+        ConnectionCallback connectionCallback_; //有新连接时的回调
+        MessageCallback messageCallback_; //有读写消息时的回调
+        WriteCompleteCallback writeCompleteCallback_; //消息发送完成的回调
+        ThreadInitCallback threadInitCallback_; //loop线程初始化的回调
+
+        std::atomic<int> started_;
+        int nextConnId_;
+        ConnectionMap connections_;  //保存所有的连接
+
     };
-    TcpServer(EventLoop* loop, const InetAddress& listenAddr, const string& nameArg, Option option = kNoReusePort);
-    TcpServer(EventLoop* loop, const InetAddress& listenAddr);
-    ~TcpServer();   // force out-line dtor, for scoped_ptr members.
-
-    const string& ipPort() const { return ipPort_; }
-    const string& name() const { return name_; }
-    EventLoop* getLoop() const { return loop_; }
-
-    /// Set the number of threads for handling input.
-    ///
-    /// Always accepts new connection in loop's thread.
-    /// Must be called before @c start
-    /// @param numThreads
-    /// - 0 means all I/O in loop's thread, no thread will created.
-    ///   this is the default value.
-    /// - 1 means all I/O in another thread.
-    /// - N means a thread pool with N threads, new connections
-    ///   are assigned on a round-robin basis.
-    void setThreadNum(int numThreads);
-
-    /// Starts the server if it's not listenning.
-    ///
-    /// It's harmless to call it multiple times.
-    /// Thread safe.
-    void start();
-
-    /// Set connection callback.
-    /// Not thread safe.
-    void setConnectionCallback(const ConnectionCallback& cb)
-    { connectionCallback_ = cb; }
-
-    /// Set message callback.
-    /// Not thread safe.
-    void setMessageCallback(const MessageCallback& cb)
-    { messageCallback_ = cb; }
-
-    /// Set write complete callback.
-    /// Not thread safe.
-    void setWriteCompleteCallback(const WriteCompleteCallback& cb)
-    { writeCompleteCallback_ = cb; }
-
-private:
-    // Not thread safe, but in loop
-    void newConnection(int sockfd, const InetAddress& peerAddr);
-    /// Thread safe.
-    void removeConnection(const TcpConnectionPtr& conn);
-    /// Not thread safe, but in loop
-    void removeConnectionInLoop(const TcpConnectionPtr& conn);
-
-    typedef std::map<std::string, TcpConnectionPtr> ConnectionMap;
-
-    EventLoop* loop_;   // the acceptor loop
-    const string ipPort_;
-    const std::string name_;
-    boost::scoped_ptr<Acceptor> acceptor_;  // avoid revealing Acceptor 用来获取新的连接
-    boost::scoped_ptr<EventLoopThreadPool> threadPool_;
-    ConnectionCallback connectionCallback_; // 保存回调函数
-    MessageCallback messageCallback_;
-    WriteCompleteCallback writeCompleteCallback_;
-    bool started_;
-    int nextConnId_;    // always in loop thread
-    ConnectionMap connections_;
-};
-
 }
-
-
-#endif //MYMUDUO_TCPSERVER_H

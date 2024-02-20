@@ -1,20 +1,16 @@
-//
-// Created by jxq on 19-6-15.
-//
-
 #ifndef MYMUDUO_TIMESTAMP_H
 #define MYMUDUO_TIMESTAMP_H
 
-#include <boost/operators.hpp>
+//#include <boost/operators.hpp>
 
 #include "copyable.h"
 #include "Types.h"
 
-namespace muduo
+namespace wnet
 {
-class Timestamp : public muduo::copyable,
-                  public boost::equality_comparable<Timestamp>,
-                  public boost::less_than_comparable<Timestamp>
+class Timestamp : public wnet::copyable,
+//                  public boost::equality_comparable<Timestamp>,
+//                  public boost::less_than_comparable<Timestamp>
 {
 public:
     // 构造一个非法的TimeStamp类

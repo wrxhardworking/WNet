@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #ifndef MYMUDUO_LOGSTREAM_H
 #define MYMUDUO_LOGSTREAM_H
 
@@ -11,7 +7,7 @@
 #include <assert.h>
 #include <string.h>
 
-namespace muduo
+namespace wnet
 {
     namespace detail {
         // 小的缓冲区大小
@@ -258,7 +254,7 @@ namespace muduo
     // The returned string is atmost 6 characters long.
     // Requires n >= 0
     string formatIEC(int64_t n);
-}   // namespace muduo
+}   // namespace wnet
 
 
 #endif //MYMUDUO_LOGSTREAM_H

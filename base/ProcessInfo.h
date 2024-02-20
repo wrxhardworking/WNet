@@ -14,7 +14,7 @@
 #include <vector>
 #include <sys/types.h>
 
-namespace muduo
+namespace wnet
 {
 
 namespace ProcessInfo
@@ -63,6 +63,6 @@ namespace ProcessInfo
   std::vector<pid_t> threads();
 }  // namespace ProcessInfo
 
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_BASE_PROCESSINFO_H

@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #ifndef MYMUDUO_LOGGING_H
 #define MYMUDUO_LOGGING_H
 
@@ -9,7 +5,7 @@
 #include "LogStream.h"
 #include "Timestamp.h"
 
-namespace muduo
+namespace wnet
 {
     class TimeZone;
 
@@ -150,18 +146,18 @@ namespace muduo
      * 2.调用LogStream重载的operator<<操作符，将数据写入到LogStream的Buffer中
      * 3.当前语句结束，Logger临时对象析构，调用Logger析构函数，将LogStream中的数据输出
      */
-    #define LOG_TRACE if (muduo::Logger::logLevel() <= muduo::Logger::TRACE) \
-      muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()
-    #define LOG_DEBUG if (muduo::Logger::logLevel() <= muduo::Logger::DEBUG) \
-      muduo::Logger(__FILE__, __LINE__, muduo::Logger::DEBUG, __func__).stream()
-    #define LOG_INFO if (muduo::Logger::logLevel() <= muduo::Logger::INFO) \
-      muduo::Logger(__FILE__, __LINE__).stream()
-    #define LOG_WARN muduo::Logger(__FILE__, __LINE__, muduo::Logger::WARN).stream()
-    #define LOG_ERROR muduo::Logger(__FILE__, __LINE__, muduo::Logger::ERROR).stream()
-    #define LOG_FATAL muduo::Logger(__FILE__, __LINE__, muduo::Logger::FATAL).stream()
-    #define LOG_SYSERR muduo::Logger(__FILE__, __LINE__, false).stream()
-    #define LOG_SYSFATAL muduo::Logger(__FILE__, __LINE__, true).stream()
-    #define LOG muduo::Logger(__FILE__, __LINE__).stream()
+    #define LOG_TRACE if (wnet::Logger::logLevel() <= wnet::Logger::TRACE) \
+      wnet::Logger(__FILE__, __LINE__, wnet::Logger::TRACE, __func__).stream()
+    #define LOG_DEBUG if (wnet::Logger::logLevel() <= wnet::Logger::DEBUG) \
+      wnet::Logger(__FILE__, __LINE__, wnet::Logger::DEBUG, __func__).stream()
+    #define LOG_INFO if (wnet::Logger::logLevel() <= wnet::Logger::INFO) \
+      wnet::Logger(__FILE__, __LINE__).stream()
+    #define LOG_WARN wnet::Logger(__FILE__, __LINE__, wnet::Logger::WARN).stream()
+    #define LOG_ERROR wnet::Logger(__FILE__, __LINE__, wnet::Logger::ERROR).stream()
+    #define LOG_FATAL wnet::Logger(__FILE__, __LINE__, wnet::Logger::FATAL).stream()
+    #define LOG_SYSERR wnet::Logger(__FILE__, __LINE__, false).stream()
+    #define LOG_SYSFATAL wnet::Logger(__FILE__, __LINE__, true).stream()
+    #define LOG wnet::Logger(__FILE__, __LINE__).stream()
 
     const char* strerror_tl(int savedErrno);
 
@@ -171,7 +167,7 @@ namespace muduo
     // initializer lists.
 
     #define CHECK_NOTNULL(val) \
-  ::muduo::CheckNotNull(__FILE__, __LINE__, "'" #val "' Must be non NULL", (val))
+  ::wnet::CheckNotNull(__FILE__, __LINE__, "'" #val "' Must be non NULL", (val))
 
     // A small helper for CHECK_NOTNULL().
     template <typename T>

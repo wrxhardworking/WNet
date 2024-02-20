@@ -15,10 +15,10 @@
 #include "HttpRequest.h"
 #include "HttpResponse.h"
 
-using namespace muduo;
-using namespace muduo::net;
+using namespace wnet;
+using namespace wnet::net;
 
-namespace muduo
+namespace wnet
 {
 namespace net
 {
@@ -35,7 +35,7 @@ void defaultHttpCallback(const HttpRequest&, HttpResponse* resp)
 
 }  // namespace detail
 }  // namespace net
-}  // namespace muduo
+}  // namespace wnet
 
 HttpServer::HttpServer(EventLoop* loop,
                        const InetAddress& listenAddr,
@@ -71,7 +71,7 @@ void HttpServer::onConnection(const TcpConnectionPtr& conn)
 
 // 消息回调
 void HttpServer::onMessage(const TcpConnectionPtr& conn,
-                           muduo::Buffer* buf,
+                           wnet::Buffer* buf,
                            Timestamp receiveTime)
 {
   HttpContext* context = boost::any_cast<HttpContext>(conn->getMutableContext());
@@ -98,7 +98,7 @@ void HttpServer::onRequest(const TcpConnectionPtr& conn, const HttpRequest& req)
     (req.getVersion() == HttpRequest::kHttp10 && connection != "Keep-Alive");
   HttpResponse response(close); // 构造响应
   httpCallback_(req, &response);  // 用户回调
-  muduo::Buffer buf;
+  wnet::Buffer buf;
   // 此时response已经构造好，将向客户发送Response添加到buffer中
   response.appendToBuffer(&buf);
   conn->send(&buf);

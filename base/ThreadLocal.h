@@ -1,6 +1,4 @@
-//
-// Created by jxq on 19-7-2.
-//
+
 
 #ifndef MYMUDUO_THREADLOCAL_H
 #define MYMUDUO_THREADLOCAL_H
@@ -10,7 +8,7 @@
 
 #include <pthread.h>
 
-namespace muduo
+namespace wnet
 {
     template<typename T>
     class ThreadLocal : noncopyable
@@ -50,6 +48,6 @@ namespace muduo
 
         pthread_key_t pkey_;    // 线程特定数据
     };
-}   // namespace muduo
+}   // namespace wnet
 
 #endif //MYMUDUO_THREADLOCAL_H

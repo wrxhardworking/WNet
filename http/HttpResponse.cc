@@ -12,10 +12,10 @@
 
 #include <stdio.h>
 
-using namespace muduo;
-using namespace muduo::net;
+using namespace wnet;
+using namespace wnet::net;
 
-void HttpResponse::appendToBuffer(muduo::Buffer* output) const
+void HttpResponse::appendToBuffer(wnet::Buffer* output) const
 {
   char buf[32];
   // 构造响应行

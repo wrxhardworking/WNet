@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-1.
-//
-
 #include "ThreadPool.h"
 
 #include "Exception.h"
@@ -9,7 +5,7 @@
 #include <assert.h>
 #include <stdio.h>
 
-using namespace muduo;
+using namespace wnet;
 using namespace std;
 
 ThreadPool::ThreadPool(const string &nameArg)
@@ -40,7 +36,7 @@ void ThreadPool::start(int numThreads)
     {
         char id[32];
         snprintf(id, sizeof id, "%d", i+1);
-        threads_.emplace_back(new muduo::Thread(
+        threads_.emplace_back(new wnet::Thread(
                 bind(&ThreadPool::runInThread, this), name_+id));
         threads_[i] -> start();
     }

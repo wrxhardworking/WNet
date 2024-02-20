@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-6-20.
-//
-
 #include "CurrentThread.h"
 
 #include <cxxabi.h>
 #include <execinfo.h>   // 在头文件"execinfo.h"中声明了三个函数用于获取当前线程的函数调用堆栈
 #include <stdlib.h>
 
-namespace muduo
+namespace wnet
 {
     namespace CurrentThread
     {
@@ -95,7 +91,7 @@ namespace muduo
             return stack;
         }
     }   // namespace CurrentThread;
-}   // namespace muduo;
+}   // namespace wnet;
 
 
 

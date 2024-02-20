@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Thread_test.dir/Thread_test.cpp.o  -o Thread_test  ../libbase.a -lpthread 

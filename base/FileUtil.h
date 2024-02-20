@@ -12,7 +12,7 @@
 #include "StringPiece.h"
 #include <sys/types.h>  // for off_t
 
-namespace muduo
+namespace wnet
 {
 namespace FileUtil
 {
@@ -84,7 +84,7 @@ class AppendFile : noncopyable
 };
 
 }  // namespace FileUtil
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_BASE_FILEUTIL_H
 

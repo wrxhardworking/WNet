@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-6-15.
-//
-
 #include "Timestamp.h"
 
 #include <sys/time.h>
@@ -9,7 +5,7 @@
 
 #include <inttypes.h>
 
-using namespace muduo;
+using namespace wnet;
 
 static_assert(sizeof(Timestamp) == sizeof(int64_t),
               "Timestamp is same size as int64_t");

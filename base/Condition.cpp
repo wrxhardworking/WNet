@@ -1,14 +1,10 @@
-//
-// Created by jxq on 19-6-21.
-//
-
 #include "Condition.h"
 
 #include <error.h>
 
 // 超时处理
 // returns true if time true, false otherwise;
-bool muduo::Condition::waitForSeconds(double seconds)
+bool wnet::Condition::waitForSeconds(double seconds)
 {
     struct timespec abstime;
     // FIXME: use CLOCK_MONOTONIC or CLOCK_MONOTONIC_RAW to prevent time rewind.

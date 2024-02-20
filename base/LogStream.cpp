@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-4.
-//
-
 #include "LogStream.h"
 
 #include <algorithm>
@@ -20,8 +16,8 @@
 
 #include <inttypes.h>
 
-using namespace muduo;
-using namespace muduo::detail;
+using namespace wnet;
+using namespace wnet::detail;
 
 // TODO:: better itoa.
 #if defined(__clang__)
@@ -31,7 +27,7 @@ using namespace muduo::detail;
 #pragma GCC diagnostic ignored "-Wtype-limits"
 #endif
 
-namespace muduo
+namespace wnet
 {
     namespace detail
     {
@@ -205,7 +201,7 @@ namespace muduo
             snprintf(buf, sizeof buf, "%.1fEi", n / Ei );
         return buf;
     }
-}   // namespace muduo
+}   // namespace wnet
 
 template<int SIZE> // 使用非类型模版参数
 const char* FixedBuffer<SIZE>::debugString()

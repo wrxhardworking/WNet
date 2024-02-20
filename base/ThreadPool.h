@@ -1,7 +1,3 @@
-//
-// Created by jxq on 19-7-1.
-//
-
 #ifndef MYMUDUO_THREADPOOL_H
 #define MYMUDUO_THREADPOOL_H
 
@@ -15,7 +11,7 @@
 
 using namespace std;
 
-namespace muduo
+namespace wnet
 {
     class ThreadPool : noncopyable{
     public:
@@ -58,7 +54,7 @@ namespace muduo
         Condition notFull_ GUARDED_BY(mutex_);
         string name_;
         Task threadInitCallback_;
-        vector<unique_ptr<muduo::Thread> > threads_;
+        vector<unique_ptr<wnet::Thread> > threads_;
         deque<Task> queue_ GUARDED_BY(mutex_);
         size_t maxQueueSize_;
         bool running_;

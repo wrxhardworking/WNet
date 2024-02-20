@@ -17,7 +17,7 @@
 // 首先将调用onConnection，该函数为Tcp连接创建Http上下文变量HttpContext，
 // 这个类主要用于接收客户请求（这里为Http请求），并解析请求。
 
-namespace muduo
+namespace wnet
 {
 namespace net
 {
@@ -58,7 +58,7 @@ class HttpServer : noncopyable
  private:
   void onConnection(const TcpConnectionPtr& conn);
   void onMessage(const TcpConnectionPtr& conn,
-                 muduo::Buffer* buf,
+                 wnet::Buffer* buf,
                  Timestamp receiveTime);
   void onRequest(const TcpConnectionPtr&, const HttpRequest&);
 
@@ -67,6 +67,6 @@ class HttpServer : noncopyable
 };
 
 }  // namespace net
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_NET_HTTP_HTTPSERVER_H

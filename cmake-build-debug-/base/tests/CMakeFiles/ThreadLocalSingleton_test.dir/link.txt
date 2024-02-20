@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/ThreadLocalSingleton_test.dir/ThreadLocalSingleton_test.cpp.o  -o ThreadLocalSingleton_test  ../libbase.a -lpthread 

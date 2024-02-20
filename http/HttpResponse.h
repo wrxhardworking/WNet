@@ -20,13 +20,13 @@
 // 解析出来请求头后就需要按照不同的请求方法、类型等构造响应了，
 // muduo封装了HttpResponse类将响应实体保存到Buffer对象中，最后通过TcpConnection发送给客户端。
 
-namespace muduo
+namespace wnet
 {
 namespace net
 {
 
 class Buffer;
-class HttpResponse : public muduo::copyable
+class HttpResponse : public wnet::copyable
 {
  public:
   enum HttpStatusCode
@@ -66,7 +66,7 @@ class HttpResponse : public muduo::copyable
   void setBody(const string& body)
   { body_ = body; }
 
-  void appendToBuffer(muduo::Buffer* output) const; // 将HttpResponse添加到Buffer
+  void appendToBuffer(wnet::Buffer* output) const; // 将HttpResponse添加到Buffer
 
  private:
   std::map<string, string> headers_;  // 响应头
@@ -78,6 +78,6 @@ class HttpResponse : public muduo::copyable
 };
 
 }  // namespace net
-}  // namespace muduo
+}  // namespace wnet
 
 #endif  // MUDUO_NET_HTTP_HTTPRESPONSE_H
