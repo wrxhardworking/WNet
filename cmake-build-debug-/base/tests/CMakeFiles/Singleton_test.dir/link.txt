@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Singleton_test.dir/Singleton_test.cpp.o  -o Singleton_test  ../libbase.a -lpthread 

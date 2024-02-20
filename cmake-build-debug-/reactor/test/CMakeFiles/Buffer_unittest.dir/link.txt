@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Buffer_unittest.dir/Buffer_unittest.cc.o  -o Buffer_unittest  ../libreactor.a -lboost_unit_test_framework ../../base/libbase.a -lpthread 

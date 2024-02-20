@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/bsa.dir/bsa.cpp.o  -o bsa 

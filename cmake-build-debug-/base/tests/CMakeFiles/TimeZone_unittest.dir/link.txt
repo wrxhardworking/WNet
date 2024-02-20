@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/TimeZone_unittest.dir/TimeZone_unittest.cpp.o  -o TimeZone_unittest  ../libbase.a -lpthread 

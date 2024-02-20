@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/HttpServer_test.dir/HttpServer_test.cc.o  -o HttpServer_test  ../../base/libbase.a -lreactor ../libhttp.a -lpthread -lreactor 

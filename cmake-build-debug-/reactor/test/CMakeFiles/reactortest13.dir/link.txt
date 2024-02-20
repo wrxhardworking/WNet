@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/reactortest13.dir/test13.cpp.o  -o reactortest13  ../libreactor.a ../../base/libbase.a -lpthread 

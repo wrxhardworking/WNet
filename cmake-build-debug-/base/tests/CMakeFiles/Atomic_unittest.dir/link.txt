@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Atomic_unittest.dir/Atomic_unittest.cpp.o  -o Atomic_unittest  ../libbase.a -lpthread 

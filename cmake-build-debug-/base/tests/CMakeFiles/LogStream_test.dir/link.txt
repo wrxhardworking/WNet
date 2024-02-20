@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/LogStream_test.dir/LogStream_test.cpp.o  -o LogStream_test  ../libbase.a -lboost_unit_test_framework -lpthread 

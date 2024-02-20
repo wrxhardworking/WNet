@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/AsyncLogging_test.dir/AsyncLogging_test.cpp.o  -o AsyncLogging_test  ../libbase.a -lpthread 

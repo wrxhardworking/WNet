@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/asio_tutorial_timer6.dir/timer6/timer.cc.o  -o asio_tutorial_timer6  ../../libreactor.a ../../../base/libbase.a -lpthread 

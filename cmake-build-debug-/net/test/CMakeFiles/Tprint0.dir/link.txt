@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Tprint0.dir/Tprint.cpp.o  -o Tprint0  ../libnet.a ../../base/libbase.a -lpthread 

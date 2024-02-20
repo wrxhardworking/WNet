@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Exception_test.dir/Exception_test.cpp.o  -o Exception_test  ../libbase.a -lpthread 

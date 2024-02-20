@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/LogStream_bench.dir/LogStream_bench.cpp.o  -o LogStream_bench  ../libbase.a -lpthread 

@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Timestame_unittest.dir/Timestame_unittest.cpp.o  -o Timestame_unittest  ../libbase.a -lpthread 
